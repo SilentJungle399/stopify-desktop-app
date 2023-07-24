@@ -54,6 +54,7 @@ const menu = Menu.buildFromTemplate([
 const createWindow = async () => {
 	const win = new BrowserWindow({
 		title: "Stopify",
+		icon: "stopify.png",
 		minWidth: 1200,
 		minHeight: 800,
 		webPreferences: {
@@ -65,9 +66,9 @@ const createWindow = async () => {
 
 	win.setMenu(menu);
 	await win.loadURL(
-		process.env.NODE_ENV === "production"
-			? "https://stopify.silentjungle.me/"
-			: "http://localhost:3000"
+		process.env.NODE_ENV === "development"
+			? "http://localhost:3000"
+			: "https://stopify.silentjungle.me/"
 	);
 
 	win.webContents.setWindowOpenHandler(({ url }) => {

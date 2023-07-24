@@ -1,19 +1,29 @@
 {
 	"name": "stopify-desktop",
 	"version": "1.0.0",
-	"description": "",
 	"main": "index.js",
+	"author": "SilentJungle399",
+	"description": "Desktop client for Stopify",
 	"scripts": {
-		"start": "electron ."
+		"start": "electron-forge start",
+		"package": "electron-forge package",
+		"make": "electron-forge make",
+		"publish": "electron-forge publish"
 	},
 	"keywords": [],
-	"author": "",
 	"license": "ISC",
 	"devDependencies": {
+		"@electron-forge/cli": "^6.2.1",
+		"@electron-forge/maker-deb": "^6.2.1",
+		"@electron-forge/maker-rpm": "^6.2.1",
+		"@electron-forge/maker-squirrel": "^6.2.1",
+		"@electron-forge/maker-zip": "^6.2.1",
+		"@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
+		"@electron-forge/publisher-github": "^6.2.1",
 		"electron": "^25.3.1"
 	},
 	"dependencies": {
 		"discord-rpc": "^4.0.1",
-		"shell": "^0.5.1"
+		"electron-squirrel-startup": "^1.0.0"
 	}
 }
