@@ -88,7 +88,7 @@ ipcMain.on("playerState", (event, data) => {
 			startTimestamp: Date.now() - data.currentTime * 1000,
 			buttons: [
 				{
-					label: `Listen along (${data.knownUsers.length} Users)`,
+					label: `Listen along (${data.knownUsers.length} User(s))`,
 					url: "https://stopify.silentjungle.me/",
 				},
 			],
