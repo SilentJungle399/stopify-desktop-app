@@ -78,7 +78,9 @@ const createWindow = async () => {
 };
 
 ipcMain.on("playerState", (event, data) => {
-	if (rpc.user && data.song && data.playing && data.knownUsers && app.rpc) {
+	if (rpc.user && data.song && data.playing && data.knownUsers && app.rpc) {		
+		const listenWith = data.knownUsers.length > 1 ? data.knownUsers.length + ' users' : data.knownUsers?.[0]?.username
+		
 		rpc.setActivity({
 			details: data.song.title + " - " + data.song.artist,
 			largeImageKey: data.song.thumbnail,
@@ -88,7 +90,7 @@ ipcMain.on("playerState", (event, data) => {
 			startTimestamp: Date.now() - data.currentTime * 1000,
 			buttons: [
 				{
-					label: `Listen along (${data.knownUsers.length} User(s))`,
+					label: `Listen with ` + (listenWith || 'me'),
 					url: "https://stopify.silentjungle.me/",
 				},
 			],
