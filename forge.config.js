@@ -1,3 +1,6 @@
+const fs = require('fs')
+const path = require('path')
+
 module.exports = {
 	packagerConfig: {
 		asar: true,
@@ -14,7 +17,11 @@ module.exports = {
 		},
 		{
 			name: "@electron-forge/maker-deb",
-			config: {},
+			config: {
+				options: {
+					icon: 'stopify.png'
+				}
+			},
 		},
 		{
 			name: "@electron-forge/maker-rpm",
@@ -39,4 +46,13 @@ module.exports = {
 			},
 		},
 	],
+	hooks: {
+		packageAfterPrune: async (forgeConfig, buildPath, electronVersion, platform, arch) => {
+			if (platform === 'linux') {
+				console.log("We need to remove the problematic link file on Linux")
+				console.log(`Build path ${buildPath}`)
+				fs.unlinkSync(path.join(buildPath, 'node_modules/register-scheme/build/node_gyp_bins/python3'))
+			}
+		}
+	}
 };
