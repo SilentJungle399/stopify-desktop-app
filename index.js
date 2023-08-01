@@ -88,7 +88,7 @@ ipcMain.on("playerState", (event, data) => {
 			details: data.song.title + " - " + data.song.artist,
 			largeImageKey: data.song.thumbnail,
 			largeImageText: data.song.title,
-			smallImageKey: "https://i.imgur.com/l1Y1XHM_d.webp?maxwidth=760&fidelity=grand",
+			smallImageKey: "https://i.imgur.com/YFoY7BO.png",
 			smallImageText: "Playing on stopify",
 			startTimestamp: Date.now() - data.currentTime * 1000,
 			buttons: [
