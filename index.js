@@ -54,7 +54,7 @@ const menu = Menu.buildFromTemplate([
 const createWindow = async () => {
 	const win = new BrowserWindow({
 		title: "Stopify",
-		icon: "stopify.png",
+		icon: "build/icon.ico",
 		minWidth: 1200,
 		minHeight: 800,
 		webPreferences: {
@@ -78,9 +78,12 @@ const createWindow = async () => {
 };
 
 ipcMain.on("playerState", (event, data) => {
-	if (rpc.user && data.song && data.playing && data.knownUsers && app.rpc) {		
-		const listenWith = data.knownUsers.length > 1 ? data.knownUsers.length + ' users' : data.knownUsers?.[0]?.username
-		
+	if (rpc.user && data.song && data.playing && data.knownUsers && app.rpc) {
+		const listenWith =
+			data.knownUsers.length > 1
+				? data.knownUsers.length + " users"
+				: data.knownUsers?.[0]?.username;
+
 		rpc.setActivity({
 			details: data.song.title + " - " + data.song.artist,
 			largeImageKey: data.song.thumbnail,
@@ -90,7 +93,7 @@ ipcMain.on("playerState", (event, data) => {
 			startTimestamp: Date.now() - data.currentTime * 1000,
 			buttons: [
 				{
-					label: `Listen with ` + (listenWith || 'me'),
+					label: `Listen with ` + (listenWith || "me"),
 					url: "https://stopify.silentjungle.me/",
 				},
 			],

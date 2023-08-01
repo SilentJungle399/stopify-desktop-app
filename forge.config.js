@@ -1,9 +1,10 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
 
 module.exports = {
 	packagerConfig: {
 		asar: true,
+		name: "Stopify",
 	},
 	rebuildConfig: {},
 	makers: [
@@ -19,8 +20,8 @@ module.exports = {
 			name: "@electron-forge/maker-deb",
 			config: {
 				options: {
-					icon: 'stopify.png'
-				}
+					icon: "stopify.png",
+				},
 			},
 		},
 		{
@@ -34,25 +35,23 @@ module.exports = {
 			config: {},
 		},
 	],
-	publishers: [
-		{
-			name: "@electron-forge/publisher-github",
-			config: {
-				repository: {
-					owner: "SilentJungle399",
-					name: "stopify-desktop-app",
-				},
-				prerelease: true,
-			},
-		},
-	],
+	publishers: [],
 	hooks: {
 		packageAfterPrune: async (forgeConfig, buildPath, electronVersion, platform, arch) => {
-			if (platform === 'linux') {
-				console.log("We need to remove the problematic link file on Linux")
-				console.log(`Build path ${buildPath}`)
-				fs.unlinkSync(path.join(buildPath, 'node_modules/register-scheme/build/node_gyp_bins/python3'))
+			if (platform === "linux") {
+				console.log("We need to remove the problematic link file on Linux");
+				console.log(`Build path ${buildPath}`);
+				fs.unlinkSync(
+					path.join(buildPath, "node_modules/register-scheme/build/node_gyp_bins/python3")
+				);
 			}
-		}
-	}
+		},
+		postPackage: async (forgeConfig, options) => {
+			// copy icons directory to package path, before squirrel makes installer
+			fs.copyFileSync(
+				path.join(__dirname, "stopify.png"),
+				path.join(options.outputPaths[0], "stopify.png")
+			);
+		},
+	},
 };
