@@ -2,14 +2,11 @@
 	"name": "stopify-desktop",
 	"version": "1.0.0",
 	"main": "index.js",
-	"author": "SilentJungle399",
+	"author": "SilentJungle399 <silentjungle399@gmail.com> (https://silentjungle.me/)",
 	"description": "Desktop client for Stopify",
-	"build": {
-		"productName": "Stopify Desktop Client"
-	},
 	"scripts": {
 		"start": "electron .",
-		"dist": "electron-builder"
+		"build": "electron-builder --config ./electron.builder.json"
 	},
 	"keywords": [],
 	"license": "ISC",
@@ -19,6 +16,9 @@
 	},
 	"optionalDependencies": {
 		"node-gyp": "^9.4.0"
+	},
+	"repository": {
+		"url": "https://github.com/SilentJungle399/stopify-desktop-app"
 	},
 	"dependencies": {
 		"discord-rpc": "^4.0.1"
