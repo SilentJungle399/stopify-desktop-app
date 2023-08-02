@@ -1,0 +1,7 @@
+{
+    "productName": "Stopify Desktop Client",
+    "linux": {
+        "target": "deb",
+        "icon": "icon.icns"
+    }
+}
